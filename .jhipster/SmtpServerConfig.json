@@ -1,0 +1,56 @@
+{
+    "name": "SmtpServerConfig",
+    "fields": [
+        {
+            "fieldName": "active",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "debug",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "host",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "port",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "timeout",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "security",
+            "fieldType": "SmtpSecurity",
+            "fieldValues": "NONE,SSL,TLS",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "username",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "password",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20190404141650",
+    "entityTableName": "smtp_server_config",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": [
+        "entandoMailPlugin"
+    ]
+}

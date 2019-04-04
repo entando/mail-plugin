@@ -1,0 +1,70 @@
+{
+  "generator-jhipster": {
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "enableHibernateCache": true,
+    "enableSwaggerCodegen": false,
+    "enableTranslation": true,
+    "jhiPrefix": "jhi",
+    "languages": [
+      "en",
+      "it"
+    ],
+    "messageBroker": false,
+    "nativeLanguage": "en",
+    "packageName": "org.entando.plugin.mail",
+    "packageFolder": "org/entando/plugin/mail",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": false,
+    "serviceDiscoveryType": false,
+    "skipClient": true,
+    "testFrameworks": [],
+    "websocket": false,
+    "baseName": "entandoMailPlugin",
+    "applicationType": "microservice",
+    "buildTool": "maven",
+    "authenticationType": "jwt",
+    "jhipsterVersion": "5.8.2",
+    "skipUserManagement": true,
+    "clientPackageManager": "npm",
+    "cacheProvider": "hazelcast",
+    "serverPort": "8081",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [
+      {
+        "name": "generator-jhipster-entando",
+        "version": "0.0.0"
+      }
+    ],
+    "blueprint": "generator-jhipster-entando",
+    "blueprintVersion": "0.0.0"
+  },
+  "entities": [
+    "SmtpServerConfig",
+    "EmailSender",
+    "EmailTemplate"
+  ],
+  "generator-jhipster-entando": {
+    "jhipsterVersion": "5.8.2",
+    "applicationType": "microservice",
+    "baseName": "entandoMailPlugin",
+    "packageName": "org.entando.plugin.mail",
+    "packageFolder": "org/entando/plugin/mail",
+    "serverPort": "8081",
+    "authenticationType": "jwt",
+    "cacheProvider": "hazelcast",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "OTcwNDVhYWU3NGU3YzM3NDFiMWVkNzFjZGEzYjdhNjczMjdlODY1MzE2ZmZiMDhjN2FkNmZlZTMxOGRjZThkNjhiNGY4YTFiYWEwZDdlMTI5NjZjYzI5MzVjOWUzNDY4YjBlZDgzMWQ1YTNmYWNiZTk4M2E4YzhkZjIyNmZmZDM=",
+    "enableTranslation": true
+  }
+}

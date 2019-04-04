@@ -1,0 +1,41 @@
+application {
+    config {
+        baseName entandoMailPlugin
+        applicationType microservice
+        prodDatabaseType postgresql
+        buildTool maven
+        packageName org.entando.plugin.mail
+        authenticationType jwt
+        languages [en, it]
+        serviceDiscoveryType no
+    }
+    entities *
+}
+
+entity SmtpServerConfig {
+    active Boolean
+    debug Boolean
+    host String required
+    port Integer
+    timeout Integer
+    security SmtpSecurity required
+    username String
+    password String
+}
+
+enum SmtpSecurity {
+    NONE, SSL, TLS
+}
+
+entity EmailSender {
+    id Integer required
+    name String required
+    email String required
+}
+
+entity EmailTemplate {
+    id Integer required
+    name String required
+    subject String required
+    body String required
+}
