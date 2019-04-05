@@ -9,6 +9,7 @@ import javax.validation.constraints.*;
 
 import java.io.Serializable;
 import java.util.Objects;
+import org.apache.commons.lang3.StringUtils;
 
 import org.entando.plugin.mail.domain.enumeration.SmtpSecurity;
 
@@ -28,10 +29,10 @@ public class SmtpServerConfig implements Serializable {
     private Long id;
 
     @Column(name = "active")
-    private Boolean active;
+    private boolean active;
 
     @Column(name = "jhi_debug")
-    private Boolean debug;
+    private boolean debug;
 
     @NotNull
     @Column(name = "host", nullable = false)
@@ -63,24 +64,24 @@ public class SmtpServerConfig implements Serializable {
         this.id = id;
     }
 
-    public Boolean isActive() {
+    public boolean isActive() {
         return active;
     }
 
-    public SmtpServerConfig active(Boolean active) {
+    public SmtpServerConfig active(boolean active) {
         this.active = active;
         return this;
     }
 
-    public void setActive(Boolean active) {
+    public void setActive(boolean active) {
         this.active = active;
     }
 
-    public Boolean isDebug() {
+    public boolean isDebug() {
         return debug;
     }
 
-    public SmtpServerConfig debug(Boolean debug) {
+    public SmtpServerConfig debug(boolean debug) {
         this.debug = debug;
         return this;
     }
@@ -167,6 +168,20 @@ public class SmtpServerConfig implements Serializable {
         this.password = password;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
+  
+    /**
+     * Return true if mail configuration expects an anonymous
+     * authentication.<br/>
+     * NOTE: an anonymous authentication occurs whenever the username and the
+     * associated password are <b>not</b> provided <b>and</b> no security
+     * encapsulation protocol is specified.
+     *
+     * @return True if the username and the password are not provided
+     */
+    public boolean hasAnonimousAuth() {
+        return ((StringUtils.isEmpty(username) && StringUtils.isEmpty(password))
+                && security == SmtpSecurity.NONE);
+    }
 
     @Override
     public boolean equals(Object o) {

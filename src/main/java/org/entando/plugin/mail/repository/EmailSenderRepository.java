@@ -1,5 +1,6 @@
 package org.entando.plugin.mail.repository;
 
+import java.util.Optional;
 import org.entando.plugin.mail.domain.EmailSender;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
@@ -12,4 +13,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface EmailSenderRepository extends JpaRepository<EmailSender, Long> {
 
+    Optional<EmailSender> findByName(String name);
 }
