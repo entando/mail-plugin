@@ -1,9 +1,10 @@
-package org.entando.plugin.mail.web.rest;
+package org.entando.plugin.mail.web.rest.smtpserverconfig;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kjetland.jackson.jsonSchema.JsonSchemaGenerator;
 import org.entando.plugin.mail.domain.SmtpServerConfig;
+import org.entando.plugin.mail.web.rest.SmtpServerConfigResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
