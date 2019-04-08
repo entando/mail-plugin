@@ -13,10 +13,13 @@
  */
 package org.entando.plugin.mail.service;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 public class Attachment {
 
     private String name;
     private String contentType;
+    @JsonSerialize(using = Base64ByteArraySerializer.class)
     private byte[] content;
 
     public String getName() {

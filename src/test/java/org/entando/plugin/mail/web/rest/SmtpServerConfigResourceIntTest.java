@@ -166,6 +166,33 @@ public class SmtpServerConfigResourceIntTest {
         List<SmtpServerConfig> smtpServerConfigList = smtpServerConfigRepository.findAll();
         assertThat(smtpServerConfigList).hasSize(databaseSizeBeforeCreate);
     }
+    
+    @Test
+    @Transactional
+    public void createSmtpServerConfigWhenAlreadyConfigured() throws Exception {
+
+        SmtpServerConfig serverConfig = new SmtpServerConfig();
+
+        serverConfig.setHost("localhost");
+        serverConfig.setPort(2525);
+        serverConfig.setActive(true);
+        serverConfig.setDebug(false);
+        serverConfig.setSecurity(SmtpSecurity.NONE);
+
+        smtpServerConfigRepository.save(serverConfig);
+
+        int databaseSizeBeforeCreate = smtpServerConfigRepository.findAll().size();
+
+        // There must be at most one SMTP server configuration
+        restSmtpServerConfigMockMvc.perform(post("/api/smtp-server-configs")
+                .contentType(TestUtil.APPLICATION_JSON_UTF8)
+                .content(TestUtil.convertObjectToJsonBytes(smtpServerConfig)))
+                .andExpect(status().isBadRequest());
+
+        // Validate the SmtpServerConfig in the database
+        List<SmtpServerConfig> smtpServerConfigList = smtpServerConfigRepository.findAll();
+        assertThat(smtpServerConfigList).hasSize(databaseSizeBeforeCreate);
+    }
 
     @Test
     @Transactional

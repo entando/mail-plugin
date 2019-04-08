@@ -138,6 +138,29 @@ public class EmailSenderResourceIntTest {
 
     @Test
     @Transactional
+    public void createEmailSenderWithExistingName() throws Exception {
+
+        EmailSender sender1 = new EmailSender();
+        sender1.setName("sender1");
+        sender1.setEmail("sender1@entando.org");
+
+        emailSenderRepository.save(sender1);
+
+        int databaseSizeBeforeCreate = emailSenderRepository.findAll().size();
+
+        // An entity with an existing ID cannot be created, so this API call must fail
+        restEmailSenderMockMvc.perform(post("/api/email-senders")
+                .contentType(TestUtil.APPLICATION_JSON_UTF8)
+                .content(TestUtil.convertObjectToJsonBytes(sender1)))
+                .andExpect(status().isBadRequest());
+
+        // Validate the EmailSender in the database
+        List<EmailSender> emailSenderList = emailSenderRepository.findAll();
+        assertThat(emailSenderList).hasSize(databaseSizeBeforeCreate);
+    }
+
+    @Test
+    @Transactional
     public void checkNameIsRequired() throws Exception {
         int databaseSizeBeforeTest = emailSenderRepository.findAll().size();
         // set the field null

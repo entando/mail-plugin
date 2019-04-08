@@ -46,6 +46,9 @@ public class EmailSenderResource {
         if (emailSender.getId() != null) {
             throw new BadRequestAlertException("A new emailSender cannot already have an ID", ENTITY_NAME, "idexists");
         }
+        if (emailSenderRepository.findByName(emailSender.getName()).isPresent()) {
+            throw new BadRequestAlertException("An emailSender named " + emailSender.getName() + " already exists", ENTITY_NAME, "nameexists");
+        }
         EmailSender result = emailSenderRepository.save(emailSender);
         return ResponseEntity.created(new URI("/api/email-senders/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))

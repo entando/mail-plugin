@@ -143,6 +143,31 @@ public class EmailTemplateResourceIntTest {
 
     @Test
     @Transactional
+    public void createEmailTemplateWithExistingName() throws Exception {
+
+        EmailTemplate template1 = new EmailTemplate();
+
+        template1.setName("template1");
+        template1.setSubject("test template");
+        template1.setBody("my template {placeholder}");
+
+        emailTemplateRepository.save(template1);
+
+        int databaseSizeBeforeCreate = emailTemplateRepository.findAll().size();
+
+        // An entity with an existing ID cannot be created, so this API call must fail
+        restEmailTemplateMockMvc.perform(post("/api/email-templates")
+                .contentType(TestUtil.APPLICATION_JSON_UTF8)
+                .content(TestUtil.convertObjectToJsonBytes(template1)))
+                .andExpect(status().isBadRequest());
+
+        // Validate the EmailTemplate in the database
+        List<EmailTemplate> emailTemplateList = emailTemplateRepository.findAll();
+        assertThat(emailTemplateList).hasSize(databaseSizeBeforeCreate);
+    }
+
+    @Test
+    @Transactional
     public void checkNameIsRequired() throws Exception {
         int databaseSizeBeforeTest = emailTemplateRepository.findAll().size();
         // set the field null

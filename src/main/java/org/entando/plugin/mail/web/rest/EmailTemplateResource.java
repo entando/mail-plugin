@@ -46,6 +46,9 @@ public class EmailTemplateResource {
         if (emailTemplate.getId() != null) {
             throw new BadRequestAlertException("A new emailTemplate cannot already have an ID", ENTITY_NAME, "idexists");
         }
+        if (emailTemplateRepository.findByName(emailTemplate.getName()).isPresent()) {
+            throw new BadRequestAlertException("An emailTemplate named " + emailTemplate.getName() + " already exists", ENTITY_NAME, "nameexists");
+        }
         EmailTemplate result = emailTemplateRepository.save(emailTemplate);
         return ResponseEntity.created(new URI("/api/email-templates/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))

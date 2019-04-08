@@ -46,6 +46,11 @@ public class SmtpServerConfigResource {
         if (smtpServerConfig.getId() != null) {
             throw new BadRequestAlertException("A new smtpServerConfig cannot already have an ID", ENTITY_NAME, "idexists");
         }
+        
+        if (!smtpServerConfigRepository.findAll().isEmpty()) {
+            throw new BadRequestAlertException("SMTP server already configured. Please DELETE the configuration or use the PUT HTTP method", ENTITY_NAME, "configexists");
+        }
+        
         SmtpServerConfig result = smtpServerConfigRepository.save(smtpServerConfig);
         return ResponseEntity.created(new URI("/api/smtp-server-configs/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))

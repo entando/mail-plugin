@@ -18,8 +18,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import javax.activation.DataHandler;
-import javax.activation.DataSource;
-import javax.activation.FileDataSource;
 import javax.mail.Address;
 import javax.mail.Authenticator;
 import javax.mail.Message;
@@ -139,7 +137,7 @@ public class MailManager {
 
             } else {
                 // Simple message
-                msg.setContent(mailRequest.getBody(), bodyContentType + "; charset=utf-8");
+                msg.setContent(body, bodyContentType + "; charset=utf-8");
             }
 
             msg.saveChanges();

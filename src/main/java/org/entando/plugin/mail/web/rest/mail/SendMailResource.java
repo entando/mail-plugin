@@ -16,7 +16,10 @@ package org.entando.plugin.mail.web.rest.mail;
 import org.entando.plugin.mail.service.MailService;
 import org.entando.plugin.mail.service.SendMailRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -32,7 +35,8 @@ public class SendMailResource {
     }
 
     @PostMapping("/mail")
-    public void sendMail(SendMailRequest sendMailRequest) {
+    public ResponseEntity<?> sendMail(@RequestBody SendMailRequest sendMailRequest) {
         mailService.sendMail(sendMailRequest);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 }

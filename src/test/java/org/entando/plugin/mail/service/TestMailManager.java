@@ -21,8 +21,12 @@
  */
 package org.entando.plugin.mail.service;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
+import org.entando.plugin.mail.domain.EmailTemplate;
 import org.entando.plugin.mail.repository.EmailSenderRepository;
 import org.entando.plugin.mail.repository.EmailTemplateRepository;
 import org.entando.plugin.mail.repository.SmtpServerConfigRepository;
@@ -43,6 +47,7 @@ public class TestMailManager {
 
     private final String MAIL_TEXT = "Test mail";
     private final String MAIL_HTML_TEXT = "<a href=\"https://www.entando.com/\" >Test mail</a>";
+    private final String TEMPLATE_NAME = "template1";
 
     private Wiser wiser;
 
@@ -65,6 +70,8 @@ public class TestMailManager {
 
         when(senderRepository.findByName(SENDER_1)).thenReturn(Optional.of(sender1()));
 
+        when(templateRepository.findByName(TEMPLATE_NAME)).thenReturn(Optional.of(emailTemplate()));
+
         wiser = new Wiser();
         wiser.setPort(SMTP_PORT);
         wiser.setHostname(SMTP_HOST);
@@ -79,7 +86,7 @@ public class TestMailManager {
     }
 
     @Test
-    public void testSendMail() throws Throwable {
+    public void testSendMail() throws Exception {
 
         SendMailRequest mailRequest = new SendMailRequest()
                 .setSubject("Simple mail")
@@ -93,7 +100,7 @@ public class TestMailManager {
     }
 
     @Test
-    public void testSendMailWithHtmlBody() throws Throwable {
+    public void testSendMailWithHtmlBody() throws Exception {
 
         SendMailRequest mailRequest = new SendMailRequest()
                 .setSubject("HTML mail")
@@ -108,7 +115,7 @@ public class TestMailManager {
     }
 
     @Test
-    public void testSendMailWithAttachments() throws Throwable {
+    public void testSendMailWithAttachments() throws Exception {
 
         SendMailRequest mailRequest = new SendMailRequest()
                 .setSubject("Mail with attachments")
@@ -123,7 +130,7 @@ public class TestMailManager {
     }
 
     @Test
-    public void testSendMailWithHtmlBodyAndAttachments() throws Throwable {
+    public void testSendMailWithHtmlBodyAndAttachments() throws Exception {
 
         SendMailRequest mailRequest = new SendMailRequest()
                 .setSubject("Mail with attachments and HTML body")
@@ -138,11 +145,47 @@ public class TestMailManager {
         assertThat(wiser.getMessages()).hasSize(1);
     }
 
+    @Test
+    public void testSendMailWithTemplate() throws Exception {
+
+        Map<String, String> templateParams = new HashMap<>();
+        templateParams.put("placeholder", "value");
+
+        SendMailRequest mailRequest = new SendMailRequest()
+                .setRecipientsTo(MAIL_ADDRESSES)
+                .setSenderCode(SENDER_1)
+                .setTemplateName(TEMPLATE_NAME)
+                .setTemplateParams(templateParams);
+
+        mailManager.sendMail(mailRequest);
+
+        assertThat(wiser.getMessages()).hasSize(1);
+
+        String body = new String(wiser.getMessages().get(0).getData(), StandardCharsets.UTF_8);
+        assertThat(body).contains("[my template value]");
+    }
+
+    @Test
+    public void testSmtpServerTest() {
+        assertThat(mailManager.smtpServerTest()).isTrue();
+    }
+
     private Attachment attachment() {
         Attachment attachment = new Attachment();
         attachment.setName("test-attachment")
                 .setContentType("text/plain")
                 .setContent("content".getBytes());
         return attachment;
+    }
+
+    private EmailTemplate emailTemplate() {
+
+        EmailTemplate emailTemplate = new EmailTemplate();
+
+        emailTemplate.setName(TEMPLATE_NAME);
+        emailTemplate.setSubject("test template");
+        emailTemplate.setBody("[my template {placeholder}]");
+
+        return emailTemplate;
     }
 }
