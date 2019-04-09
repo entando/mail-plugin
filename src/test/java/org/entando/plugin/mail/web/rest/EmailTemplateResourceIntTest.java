@@ -46,9 +46,6 @@ public class EmailTemplateResourceIntTest {
     private static final String DEFAULT_SUBJECT = "AAAAAAAAAA";
     private static final String UPDATED_SUBJECT = "BBBBBBBBBB";
 
-    private static final String DEFAULT_BODY = "AAAAAAAAAA";
-    private static final String UPDATED_BODY = "BBBBBBBBBB";
-
     @Autowired
     private EmailTemplateRepository emailTemplateRepository;
 
@@ -92,8 +89,7 @@ public class EmailTemplateResourceIntTest {
     public static EmailTemplate createEntity(EntityManager em) {
         EmailTemplate emailTemplate = new EmailTemplate()
             .name(DEFAULT_NAME)
-            .subject(DEFAULT_SUBJECT)
-            .body(DEFAULT_BODY);
+            .subject(DEFAULT_SUBJECT);
         return emailTemplate;
     }
 
@@ -119,7 +115,6 @@ public class EmailTemplateResourceIntTest {
         EmailTemplate testEmailTemplate = emailTemplateList.get(emailTemplateList.size() - 1);
         assertThat(testEmailTemplate.getName()).isEqualTo(DEFAULT_NAME);
         assertThat(testEmailTemplate.getSubject()).isEqualTo(DEFAULT_SUBJECT);
-        assertThat(testEmailTemplate.getBody()).isEqualTo(DEFAULT_BODY);
     }
 
     @Test
@@ -179,24 +174,6 @@ public class EmailTemplateResourceIntTest {
 
     @Test
     @Transactional
-    public void checkBodyIsRequired() throws Exception {
-        int databaseSizeBeforeTest = emailTemplateRepository.findAll().size();
-        // set the field null
-        emailTemplate.setBody(null);
-
-        // Create the EmailTemplate, which fails.
-
-        restEmailTemplateMockMvc.perform(post("/api/email-templates")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(emailTemplate)))
-            .andExpect(status().isBadRequest());
-
-        List<EmailTemplate> emailTemplateList = emailTemplateRepository.findAll();
-        assertThat(emailTemplateList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
     public void getAllEmailTemplates() throws Exception {
         // Initialize the database
         emailTemplateRepository.saveAndFlush(emailTemplate);
@@ -207,8 +184,7 @@ public class EmailTemplateResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(emailTemplate.getId().intValue())))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
-            .andExpect(jsonPath("$.[*].subject").value(hasItem(DEFAULT_SUBJECT.toString())))
-            .andExpect(jsonPath("$.[*].body").value(hasItem(DEFAULT_BODY.toString())));
+            .andExpect(jsonPath("$.[*].subject").value(hasItem(DEFAULT_SUBJECT.toString())));
     }
     
     @Test
@@ -223,8 +199,7 @@ public class EmailTemplateResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(emailTemplate.getId().intValue()))
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
-            .andExpect(jsonPath("$.subject").value(DEFAULT_SUBJECT.toString()))
-            .andExpect(jsonPath("$.body").value(DEFAULT_BODY.toString()));
+            .andExpect(jsonPath("$.subject").value(DEFAULT_SUBJECT.toString()));
     }
 
     @Test
@@ -249,8 +224,7 @@ public class EmailTemplateResourceIntTest {
         em.detach(updatedEmailTemplate);
         updatedEmailTemplate
             .name(UPDATED_NAME)
-            .subject(UPDATED_SUBJECT)
-            .body(UPDATED_BODY);
+            .subject(UPDATED_SUBJECT);
 
         restEmailTemplateMockMvc.perform(put("/api/email-templates")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -263,7 +237,6 @@ public class EmailTemplateResourceIntTest {
         EmailTemplate testEmailTemplate = emailTemplateList.get(emailTemplateList.size() - 1);
         assertThat(testEmailTemplate.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testEmailTemplate.getSubject()).isEqualTo(UPDATED_SUBJECT);
-        assertThat(testEmailTemplate.getBody()).isEqualTo(UPDATED_BODY);
     }
 
     @Test

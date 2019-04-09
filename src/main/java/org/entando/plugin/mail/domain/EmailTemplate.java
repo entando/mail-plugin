@@ -1,6 +1,7 @@
 package org.entando.plugin.mail.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -8,6 +9,8 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -26,17 +29,16 @@ public class EmailTemplate implements Serializable {
     private Long id;
 
     @NotNull
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", nullable = false, unique = true)
     private String name;
 
     @NotNull
     @Column(name = "subject", nullable = false)
     private String subject;
 
-    @NotNull
-    @Column(name = "jhi_body", nullable = false)
-    private String body;
-
+    @OneToMany(mappedBy = "template")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<EmailTemplateBody> bodies = new HashSet<>();
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -72,17 +74,29 @@ public class EmailTemplate implements Serializable {
         this.subject = subject;
     }
 
-    public String getBody() {
-        return body;
+    public Set<EmailTemplateBody> getBodies() {
+        return bodies;
     }
 
-    public EmailTemplate body(String body) {
-        this.body = body;
+    public EmailTemplate bodies(Set<EmailTemplateBody> emailTemplateBodies) {
+        this.bodies = emailTemplateBodies;
         return this;
     }
 
-    public void setBody(String body) {
-        this.body = body;
+    public EmailTemplate addBody(EmailTemplateBody emailTemplateBody) {
+        this.bodies.add(emailTemplateBody);
+        emailTemplateBody.setTemplate(this);
+        return this;
+    }
+
+    public EmailTemplate removeBody(EmailTemplateBody emailTemplateBody) {
+        this.bodies.remove(emailTemplateBody);
+        emailTemplateBody.setTemplate(null);
+        return this;
+    }
+
+    public void setBodies(Set<EmailTemplateBody> emailTemplateBodies) {
+        this.bodies = emailTemplateBodies;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -112,7 +126,6 @@ public class EmailTemplate implements Serializable {
             "id=" + getId() +
             ", name='" + getName() + "'" +
             ", subject='" + getSubject() + "'" +
-            ", body='" + getBody() + "'" +
             "}";
     }
 }

@@ -5,7 +5,8 @@
             "fieldName": "name",
             "fieldType": "String",
             "fieldValidateRules": [
-                "required"
+                "required",
+                "unique"
             ]
         },
         {
@@ -24,8 +25,9 @@
     "service": "no",
     "jpaMetamodelFiltering": false,
     "fluentMethods": true,
-    "clientRootFolder": "",
+    "clientRootFolder": "entandoMailPlugin",
     "applications": [
         "entandoMailPlugin"
-    ]
+    ],
+    "microserviceName": "entandoMailPlugin"
 }

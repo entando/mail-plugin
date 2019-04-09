@@ -14,19 +14,23 @@
     <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
 
     <!--
-        Added the entity EmailSender.
+        Added the entity EmailTemplateBody.
     -->
-    <changeSet id="20190404141651-1" author="jhipster">
-        <createTable tableName="email_sender">
+    <changeSet id="20190409101110-1" author="jhipster">
+        <createTable tableName="email_template_body">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="name" type="varchar(255)">
-                <constraints nullable="false" unique="true" uniqueConstraintName="ux_email_sender_name" />
+            <column name="lang" type="varchar(255)">
+                <constraints nullable="false" />
             </column>
 
-            <column name="email" type="varchar(255)">
+            <column name="jhi_body" type="varchar(255)">
                 <constraints nullable="false" />
+            </column>
+
+            <column name="template_id" type="bigint">
+                <constraints nullable="true" />
             </column>
 
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
