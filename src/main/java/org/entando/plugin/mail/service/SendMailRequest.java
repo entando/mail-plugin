@@ -29,6 +29,7 @@ public class SendMailRequest {
     private String[] recipientsBcc;
     private List<Attachment> attachments;
     private String templateName;
+    private String templateLang;
     private Map<String, String> templateParams;
 
     public String getSubject() {
@@ -135,6 +136,15 @@ public class SendMailRequest {
 
     public SendMailRequest setTemplateParams(Map<String, String> templateParams) {
         this.templateParams = templateParams;
+        return this;
+    }
+
+    public String getTemplateLang() {
+        return templateLang;
+    }
+
+    public SendMailRequest setTemplateLang(String templateLang) {
+        this.templateLang = templateLang;
         return this;
     }
 }

@@ -13,8 +13,10 @@
  */
 package org.entando.plugin.mail.web.rest.mail;
 
+import org.apache.commons.lang3.StringUtils;
 import org.entando.plugin.mail.service.MailService;
 import org.entando.plugin.mail.service.SendMailRequest;
+import org.entando.plugin.mail.web.rest.errors.BadRequestAlertException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,6 +38,12 @@ public class SendMailResource {
 
     @PostMapping("/mail")
     public ResponseEntity<?> sendMail(@RequestBody SendMailRequest sendMailRequest) {
+
+        if (!StringUtils.isEmpty(sendMailRequest.getTemplateName())
+                && StringUtils.isEmpty(sendMailRequest.getTemplateLang())) {
+            throw new BadRequestAlertException("When using a template it is necessary to specify also a language", "SendMailRequest", "langmissing");
+        }
+
         mailService.sendMail(sendMailRequest);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

@@ -1,8 +1,10 @@
 package org.entando.plugin.mail.web.rest;
 
+import com.google.common.collect.ImmutableSet;
 import org.entando.plugin.mail.EntandoMailPluginApp;
 
 import org.entando.plugin.mail.domain.EmailTemplate;
+import org.entando.plugin.mail.domain.EmailTemplateBody;
 import org.entando.plugin.mail.repository.EmailTemplateRepository;
 import org.entando.plugin.mail.web.rest.errors.ExceptionTranslator;
 
@@ -23,7 +25,6 @@ import org.springframework.validation.Validator;
 
 import javax.persistence.EntityManager;
 import java.util.List;
-
 
 import static org.entando.plugin.mail.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -144,7 +145,11 @@ public class EmailTemplateResourceIntTest {
 
         template1.setName("template1");
         template1.setSubject("test template");
-        template1.setBody("my template {placeholder}");
+        
+        EmailTemplateBody templateBody = new EmailTemplateBody();
+        templateBody.setLang("en");
+        templateBody.setBody("my template {placeholder}");
+        template1.setBodies(ImmutableSet.of(templateBody));
 
         emailTemplateRepository.save(template1);
 

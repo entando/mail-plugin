@@ -21,6 +21,7 @@
  */
 package org.entando.plugin.mail.service;
 
+import com.google.common.collect.ImmutableSet;
 import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 import java.util.HashMap;
@@ -39,11 +40,12 @@ import org.junit.Test;
 import org.mockito.Mock;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import org.entando.plugin.mail.domain.EmailTemplateBody;
 import static org.mockito.Mockito.when;
 import static org.entando.plugin.mail.service.MailConfigTestUtils.*;
 
 @RunWith(MockitoJUnitRunner.class)
-public class TestMailManager {
+public class TestMailService {
 
     private final String MAIL_TEXT = "Test mail";
     private final String MAIL_HTML_TEXT = "<a href=\"https://www.entando.com/\" >Test mail</a>";
@@ -60,7 +62,7 @@ public class TestMailManager {
     @Mock
     private EmailTemplateRepository templateRepository;
 
-    private MailManager mailManager;
+    private MailService mailManager;
 
     @Before
     public void setUp() {
@@ -77,7 +79,7 @@ public class TestMailManager {
         wiser.setHostname(SMTP_HOST);
         wiser.start();
 
-        mailManager = new MailManager(smtpConfigRepository, senderRepository, templateRepository);
+        mailManager = new MailService(smtpConfigRepository, senderRepository, templateRepository);
     }
 
     @After
@@ -155,6 +157,7 @@ public class TestMailManager {
                 .setRecipientsTo(MAIL_ADDRESSES)
                 .setSenderCode(SENDER_1)
                 .setTemplateName(TEMPLATE_NAME)
+                .setTemplateLang("en")
                 .setTemplateParams(templateParams);
 
         mailManager.sendMail(mailRequest);
@@ -184,8 +187,18 @@ public class TestMailManager {
 
         emailTemplate.setName(TEMPLATE_NAME);
         emailTemplate.setSubject("test template");
-        emailTemplate.setBody("[my template {placeholder}]");
+        emailTemplate.setBodies(ImmutableSet.of(templateBody()));
 
         return emailTemplate;
+    }
+
+    private EmailTemplateBody templateBody() {
+        EmailTemplateBody templateBody = new EmailTemplateBody();
+
+        templateBody.setId(1L);
+        templateBody.setLang("en");
+        templateBody.setBody("[my template {placeholder}]");
+
+        return templateBody;
     }
 }

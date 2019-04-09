@@ -88,4 +88,18 @@ public class SendMailResourceTest {
 
         verify(mailService, times(1)).sendMail(any());
     }
+
+    @Test
+    public void testTemplateWithoutLangBadRequest() throws Exception {
+
+        SendMailRequest mailRequest = new SendMailRequest()
+                .setSubject("Template mail")
+                .setRecipientsTo(new String[]{"test@entando.org"})
+                .setTemplateName("template1");
+
+        sendMailMockMvc.perform(post("/api/mail")
+                .contentType(TestUtil.APPLICATION_JSON_UTF8)
+                .content(TestUtil.convertObjectToJsonBytes(mailRequest)))
+                .andExpect(status().isBadRequest());
+    }
 }
