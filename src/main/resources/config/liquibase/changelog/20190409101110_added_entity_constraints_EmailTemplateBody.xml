@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity EmailTemplateBody.
+    -->
+    <changeSet id="20190409101110-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="template_id"
+                                 baseTableName="email_template_body"
+                                 constraintName="fk_email_template_body_template_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="email_template"/>
+
+    </changeSet>
+</databaseChangeLog>

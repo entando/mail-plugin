@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/form")
 public class SmtpServerConfigConfigFormResource {
 
-    private final Logger log = LoggerFactory.getLogger(SmtpServerConfigResource.class);
+    private final Logger log = LoggerFactory.getLogger(SmtpServerConfigConfigFormResource.class);
 
     @GetMapping(value = "/SmtpServerConfig", produces = MediaType.APPLICATION_JSON_VALUE)
     public String getJsonSchemaFormConfiguration() throws Exception {

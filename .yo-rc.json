@@ -43,7 +43,8 @@
   "entities": [
     "SmtpServerConfig",
     "EmailSender",
-    "EmailTemplate"
+    "EmailTemplate",
+    "EmailTemplateBody"
   ],
   "generator-jhipster-entando": {
     "jhipsterVersion": "5.8.2",

@@ -22,14 +22,10 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="name" type="varchar(255)">
-                <constraints nullable="false" />
+                <constraints nullable="false" unique="true" uniqueConstraintName="ux_email_template_name" />
             </column>
 
             <column name="subject" type="varchar(255)">
-                <constraints nullable="false" />
-            </column>
-
-            <column name="jhi_body" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
 

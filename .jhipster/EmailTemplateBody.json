@@ -1,16 +1,15 @@
 {
-    "name": "EmailTemplate",
+    "name": "EmailTemplateBody",
     "fields": [
         {
-            "fieldName": "name",
+            "fieldName": "lang",
             "fieldType": "String",
             "fieldValidateRules": [
-                "required",
-                "unique"
+                "required"
             ]
         },
         {
-            "fieldName": "subject",
+            "fieldName": "body",
             "fieldType": "String",
             "fieldValidateRules": [
                 "required"
@@ -19,14 +18,15 @@
     ],
     "relationships": [
         {
-            "relationshipType": "one-to-many",
-            "otherEntityName": "emailTemplateBody",
-            "otherEntityRelationshipName": "template",
-            "relationshipName": "body"
+            "relationshipType": "many-to-one",
+            "otherEntityName": "emailTemplate",
+            "otherEntityRelationshipName": "body",
+            "relationshipName": "template",
+            "otherEntityField": "id"
         }
     ],
-    "changelogDate": "20190404141652",
-    "entityTableName": "email_template",
+    "changelogDate": "20190409101110",
+    "entityTableName": "email_template_body",
     "dto": "no",
     "pagination": "no",
     "service": "no",

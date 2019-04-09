@@ -8,6 +8,8 @@
     <include file="config/liquibase/changelog/20190404141650_added_entity_SmtpServerConfig.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190404141651_added_entity_EmailSender.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190404141652_added_entity_EmailTemplate.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190409101110_added_entity_EmailTemplateBody.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="config/liquibase/changelog/20190409101110_added_entity_constraints_EmailTemplateBody.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

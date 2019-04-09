@@ -28,14 +28,22 @@ enum SmtpSecurity {
 }
 
 entity EmailSender {
-    id Integer required
-    name String required
+    id Integer required unique
+    name String required unique
     email String required
 }
 
 entity EmailTemplate {
-    id Integer required
-    name String required
+    id Integer required unique
+    name String required unique
     subject String required
+}
+
+entity EmailTemplateBody {
+    lang String required
     body String required
+}
+
+relationship OneToMany {
+    EmailTemplate{body} to EmailTemplateBody{template}
 }
