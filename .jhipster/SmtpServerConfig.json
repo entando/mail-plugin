@@ -51,6 +51,6 @@
     "fluentMethods": true,
     "clientRootFolder": "",
     "applications": [
-        "entandoMailPlugin"
+        "mailPlugin"
     ]
 }

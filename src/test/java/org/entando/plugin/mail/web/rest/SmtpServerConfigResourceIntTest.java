@@ -1,6 +1,6 @@
 package org.entando.plugin.mail.web.rest;
 
-import org.entando.plugin.mail.EntandoMailPluginApp;
+import org.entando.plugin.mail.MailPluginApp;
 
 import org.entando.plugin.mail.domain.SmtpServerConfig;
 import org.entando.plugin.mail.repository.SmtpServerConfigRepository;
@@ -38,7 +38,7 @@ import org.entando.plugin.mail.domain.enumeration.SmtpSecurity;
  * @see SmtpServerConfigResource
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = EntandoMailPluginApp.class)
+@SpringBootTest(classes = MailPluginApp.class)
 public class SmtpServerConfigResourceIntTest {
 
     private static final Boolean DEFAULT_ACTIVE = false;

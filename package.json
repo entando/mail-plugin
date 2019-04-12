@@ -1,7 +1,7 @@
 {
-    "name": "entando-mail-plugin",
+    "name": "mail-plugin",
     "version": "0.0.0",
-    "description": "Description for entandoMailPlugin",
+    "description": "Description for mailPlugin",
     "private": true,
     "license": "UNLICENSED",
     "cacheDirectories": [

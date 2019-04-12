@@ -1,6 +1,6 @@
 package org.entando.plugin.mail.web.rest;
 
-import org.entando.plugin.mail.EntandoMailPluginApp;
+import org.entando.plugin.mail.MailPluginApp;
 
 import org.entando.plugin.mail.domain.EmailSender;
 import org.entando.plugin.mail.repository.EmailSenderRepository;
@@ -37,7 +37,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @see EmailSenderResource
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = EntandoMailPluginApp.class)
+@SpringBootTest(classes = MailPluginApp.class)
 public class EmailSenderResourceIntTest {
 
     private static final String DEFAULT_NAME = "AAAAAAAAAA";

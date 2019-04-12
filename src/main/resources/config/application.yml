@@ -82,7 +82,7 @@ management:
 
 spring:
     application:
-        name: entandoMailPlugin
+        name: mailPlugin
     profiles:
         # The commented value for `active` can be replaced with valid Spring profiles to load.
         # Otherwise, it will be filled in by maven when building the WAR file
@@ -137,11 +137,11 @@ jhipster:
         #allow-credentials: true
         #max-age: 1800
     mail:
-        from: entandoMailPlugin@localhost
+        from: mailPlugin@localhost
     swagger:
         default-include-pattern: /api/.*
-        title: entandoMailPlugin API
-        description: entandoMailPlugin API documentation
+        title: mailPlugin API
+        description: mailPlugin API documentation
         version: 0.0.1
         terms-of-service-url:
         contact-name:

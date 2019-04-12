@@ -25,7 +25,7 @@ public class SmtpServerConfigResource {
 
     private final Logger log = LoggerFactory.getLogger(SmtpServerConfigResource.class);
 
-    private static final String ENTITY_NAME = "entandoMailPluginSmtpServerConfig";
+    private static final String ENTITY_NAME = "mailPluginSmtpServerConfig";
 
     private final SmtpServerConfigRepository smtpServerConfigRepository;
 

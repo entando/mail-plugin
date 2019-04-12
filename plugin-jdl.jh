@@ -1,6 +1,6 @@
 application {
     config {
-        baseName entandoMailPlugin
+        baseName mailPlugin
         applicationType microservice
         prodDatabaseType postgresql
         buildTool maven

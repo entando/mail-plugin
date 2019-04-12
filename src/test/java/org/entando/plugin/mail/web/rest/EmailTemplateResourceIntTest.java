@@ -1,7 +1,7 @@
 package org.entando.plugin.mail.web.rest;
 
 import com.google.common.collect.ImmutableSet;
-import org.entando.plugin.mail.EntandoMailPluginApp;
+import org.entando.plugin.mail.MailPluginApp;
 
 import org.entando.plugin.mail.domain.EmailTemplate;
 import org.entando.plugin.mail.domain.EmailTemplateBody;
@@ -38,7 +38,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @see EmailTemplateResource
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = EntandoMailPluginApp.class)
+@SpringBootTest(classes = MailPluginApp.class)
 public class EmailTemplateResourceIntTest {
 
     private static final String DEFAULT_NAME = "AAAAAAAAAA";

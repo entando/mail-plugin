@@ -1,6 +1,6 @@
 package org.entando.plugin.mail.web.rest;
 
-import org.entando.plugin.mail.EntandoMailPluginApp;
+import org.entando.plugin.mail.MailPluginApp;
 
 import org.entando.plugin.mail.domain.EmailTemplateBody;
 import org.entando.plugin.mail.repository.EmailTemplateBodyRepository;
@@ -37,7 +37,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @see EmailTemplateBodyResource
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = EntandoMailPluginApp.class)
+@SpringBootTest(classes = MailPluginApp.class)
 public class EmailTemplateBodyResourceIntTest {
 
     private static final String DEFAULT_LANG = "AAAAAAAAAA";

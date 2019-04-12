@@ -22,18 +22,18 @@ import java.util.Collection;
 
 @SpringBootApplication
 @EnableConfigurationProperties({LiquibaseProperties.class, ApplicationProperties.class})
-public class EntandoMailPluginApp {
+public class MailPluginApp {
 
-    private static final Logger log = LoggerFactory.getLogger(EntandoMailPluginApp.class);
+    private static final Logger log = LoggerFactory.getLogger(MailPluginApp.class);
 
     private final Environment env;
 
-    public EntandoMailPluginApp(Environment env) {
+    public MailPluginApp(Environment env) {
         this.env = env;
     }
 
     /**
-     * Initializes entandoMailPlugin.
+     * Initializes mailPlugin.
      * <p>
      * Spring profiles can be configured with a program argument --spring.profiles.active=your-active-profile
      * <p>
@@ -58,7 +58,7 @@ public class EntandoMailPluginApp {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        SpringApplication app = new SpringApplication(EntandoMailPluginApp.class);
+        SpringApplication app = new SpringApplication(MailPluginApp.class);
         DefaultProfileUtil.addDefaultProfile(app);
         Environment env = app.run(args).getEnvironment();
         logApplicationStartup(env);

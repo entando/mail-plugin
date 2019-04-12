@@ -25,7 +25,7 @@ public class EmailTemplateBodyResource {
 
     private final Logger log = LoggerFactory.getLogger(EmailTemplateBodyResource.class);
 
-    private static final String ENTITY_NAME = "entandoMailPluginEmailTemplateBody";
+    private static final String ENTITY_NAME = "mailPluginEmailTemplateBody";
 
     private final EmailTemplateBodyRepository emailTemplateBodyRepository;
 

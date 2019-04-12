@@ -20,7 +20,7 @@
     "skipClient": true,
     "testFrameworks": [],
     "websocket": false,
-    "baseName": "entandoMailPlugin",
+    "baseName": "mailPlugin",
     "applicationType": "microservice",
     "buildTool": "maven",
     "authenticationType": "jwt",
@@ -49,7 +49,7 @@
   "generator-jhipster-entando": {
     "jhipsterVersion": "5.8.2",
     "applicationType": "microservice",
-    "baseName": "entandoMailPlugin",
+    "baseName": "mailPlugin",
     "packageName": "org.entando.plugin.mail",
     "packageFolder": "org/entando/plugin/mail",
     "serverPort": "8081",

@@ -25,9 +25,9 @@
     "service": "no",
     "jpaMetamodelFiltering": false,
     "fluentMethods": true,
-    "clientRootFolder": "entandoMailPlugin",
+    "clientRootFolder": "mailPlugin",
     "applications": [
-        "entandoMailPlugin"
+        "mailPlugin"
     ],
-    "microserviceName": "entandoMailPlugin"
+    "microserviceName": "mailPlugin"
 }

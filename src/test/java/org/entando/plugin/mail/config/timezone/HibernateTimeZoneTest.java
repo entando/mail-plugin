@@ -1,6 +1,6 @@
 package org.entando.plugin.mail.config.timezone;
 
-import org.entando.plugin.mail.EntandoMailPluginApp;
+import org.entando.plugin.mail.MailPluginApp;
 import org.entando.plugin.mail.repository.timezone.DateTimeWrapper;
 import org.entando.plugin.mail.repository.timezone.DateTimeWrapperRepository;
 import org.junit.Before;
@@ -23,7 +23,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * Unit tests for the UTC Hibernate configuration.
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = EntandoMailPluginApp.class)
+@SpringBootTest(classes = MailPluginApp.class)
 public class HibernateTimeZoneTest {
 
     @Autowired

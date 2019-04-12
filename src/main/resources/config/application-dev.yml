@@ -37,8 +37,8 @@ spring:
             indent-output: true
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:h2:file:./target/h2db/db/entandomailplugin;DB_CLOSE_DELAY=-1
-        username: entandoMailPlugin
+        url: jdbc:h2:file:./target/h2db/db/mailplugin;DB_CLOSE_DELAY=-1
+        username: mailPlugin
         password:
         hikari:
             poolName: Hikari
@@ -57,7 +57,7 @@ spring:
             hibernate.cache.use_query_cache: false
             hibernate.generate_statistics: true
             hibernate.cache.region.factory_class: com.hazelcast.hibernate.HazelcastCacheRegionFactory
-            hibernate.cache.hazelcast.instance_name: entandoMailPlugin
+            hibernate.cache.hazelcast.instance_name: mailPlugin
             hibernate.cache.use_minimal_puts: true
             hibernate.cache.hazelcast.use_lite_member: true
     liquibase:
@@ -119,7 +119,7 @@ jhipster:
                 token-validity-in-seconds: 86400
                 token-validity-in-seconds-for-remember-me: 2592000
     mail: # specific JHipster mail property, for standard properties see MailProperties
-        from: entandoMailPlugin@localhost
+        from: mailPlugin@localhost
         base-url: http://127.0.0.1:8081
     metrics:
         logs: # Reports metrics in the logs

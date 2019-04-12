@@ -13,7 +13,7 @@
  */
 package org.entando.plugin.mail.web.rest.mail;
 
-import org.entando.plugin.mail.EntandoMailPluginApp;
+import org.entando.plugin.mail.MailPluginApp;
 import org.entando.plugin.mail.service.MailService;
 import org.entando.plugin.mail.service.SendMailRequest;
 import org.entando.plugin.mail.web.rest.TestUtil;
@@ -40,7 +40,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = EntandoMailPluginApp.class)
+@SpringBootTest(classes = MailPluginApp.class)
 public class SendMailResourceTest {
 
     @Mock

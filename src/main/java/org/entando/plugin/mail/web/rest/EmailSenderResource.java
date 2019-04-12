@@ -25,7 +25,7 @@ public class EmailSenderResource {
 
     private final Logger log = LoggerFactory.getLogger(EmailSenderResource.class);
 
-    private static final String ENTITY_NAME = "entandoMailPluginEmailSender";
+    private static final String ENTITY_NAME = "mailPluginEmailSender";
 
     private final EmailSenderRepository emailSenderRepository;
 

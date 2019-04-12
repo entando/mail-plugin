@@ -1,11 +1,11 @@
 version: '2'
 services:
-    entandomailplugin-postgresql:
+    mailplugin-postgresql:
         image: postgres:10.4
         # volumes:
-        #     - ~/volumes/jhipster/entandoMailPlugin/postgresql/:/var/lib/postgresql/data/
+        #     - ~/volumes/jhipster/mailPlugin/postgresql/:/var/lib/postgresql/data/
         environment:
-            - POSTGRES_USER=entandoMailPlugin
+            - POSTGRES_USER=mailPlugin
             - POSTGRES_PASSWORD=
         ports:
             - 5432:5432
